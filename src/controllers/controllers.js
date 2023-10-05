@@ -1,6 +1,5 @@
 const User = require("../models/users");
-const jwt = require("jsonwebtoken")
-const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 async function registerUser (req, res) {
     try {
@@ -62,22 +61,22 @@ async function listAllUsers (req,res) {
             const payload = {
                 username: req.body.username,
                 email: req.body.email
-            }
+                
+            };
             const options = {
                 expiresIn: expirationTime
-            }
-            const token = await jwt.sign(payload,privateKey,options)
+            };
+            const token = await jwt.sign(payload, privateKey, options)
         
         res.status(201).json({
-            message: "User Registered in the database",
+
+            message: "success new token",
             user: {
                 username: req.body.username,
-                email: req.body.email,
+                email: req.body.email
             },
 
             token: token
-
-
 
         });    
     } catch (error) {
@@ -88,8 +87,5 @@ async function listAllUsers (req,res) {
          })
      }
  }
-
-
-
 
 module.exports = {registerUser, listAllUsers,loginUser}
